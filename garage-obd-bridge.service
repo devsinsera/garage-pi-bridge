@@ -1,0 +1,17 @@
+[Unit]
+Description=Sinsera Garage OBD bridge (OBDLink MX+ -> Supabase)
+After=bluetooth.service network-online.target
+Wants=bluetooth.service network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/garage-pi-bridge
+ExecStart=/opt/garage-pi-bridge/.venv/bin/python /opt/garage-pi-bridge/bridge.py
+Restart=on-failure
+RestartSec=10
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
